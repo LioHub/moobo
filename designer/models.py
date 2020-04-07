@@ -1,23 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
+class Profile(models.Model):
 	JOB_CHOICES = (
 		('Исполнитель', 'Исполнитель'),
 		)
-	first_name = models.CharField(max_length=20, verbose_name='Имя')
-	last_name = models.CharField(max_length=20, verbose_name='Фамиля')
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	# first_name = models.CharField(max_length=20, verbose_name='Имя')
+	# last_name = models.CharField(max_length=20, verbose_name='Фамиля')
 	number = models.CharField(max_length=20, verbose_name='Номер телефона')
-	email = models.EmailField(max_length=50, verbose_name='Почта')
+	# email = models.EmailField(max_length=50, verbose_name='Почта')
 	quantity_of_workers = models.IntegerField(
     	verbose_name='Количество работников', default=0)
 	job = models.CharField(verbose_name='Профессия', max_length=20, choices=JOB_CHOICES)
 	city = models.CharField(verbose_name='Город', max_length=30, blank=True)
-	login = models.CharField(verbose_name='Логин', max_length=50)
-	passwd = models.CharField(verbose_name='Пароль', max_length=100)
+	# login = models.CharField(verbose_name='Логин', max_length=50)
+	# passwd = models.CharField(verbose_name='Пароль', max_length=100)
 
 	def __str__(self):
-		return self.first_name
+		return self.number
 
 
 	class Meta:
@@ -104,24 +106,6 @@ class Statement(models.Model):
 	file_revit = models.FileField(upload_to='statement/files', default='', blank=True)
 	file_technical_instruction = models.FileField(upload_to='statement/files', default='', blank=True)
 	client_approved	= models.CharField(max_length=3, choices=CLIENT_APPROVED_CHOICES, default='')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	def __str__(self):
 		return self.product_name
