@@ -19,6 +19,18 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
+from designer import views
+from django.contrib.auth.views import LoginView, LogoutView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('designer/sign_up/', views.home, name='sign-up'),
+    path('designer/sign_in/', LoginView.as_view(template_name='designer/sign_in.html'), name='designer-sign-in'),
+    path('designer/sign_out/', LogoutView.as_view(next_page='designer/projects.html'), name='designer-sign-out'),
+
+
+    # path('designer/', views.designer_home, name='designer-gome'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
