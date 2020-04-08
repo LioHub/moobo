@@ -64,42 +64,48 @@
               <div class="text-center text-muted mb-4">
                 <small>Зполните форму</small>
               </div>
-              <form role="form" action="./projects.html" method="POST">
+              <form role="form" method="POST">
+
+                  {% csrf_token %}
 
                   <div class="form-group">
-                    <label for="username">Имя*</label>
+                    <label for="first_name">Имя*</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" name="firstname" placeholder="" type="text" required>
+                    <input class="form-control" name="first_name" placeholder="" type="text" required>
+                  </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="username">Фамилия*</label>
+                    <label for="last_name">Фамилия*</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" name="lastname" placeholder="" type="text" required>
+                    <input class="form-control" name="last_name" placeholder="" type="text" required>
+                  </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="username">Номер телефона*</label>
+                    <label for="number">Номер телефона*</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" name="phone" placeholder="" type="text" required>
+                    <input class="form-control" name="number" placeholder="" type="text" required>
+                  </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="username">Количество работников(число)</label>
+                    <label for="quantity_of_workers">Количество работников(число)</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" name="workers_nameber" placeholder="5" type="text" required>
+                    <input class="form-control" name="quantity_of_workers" placeholder="5" type="text" required>
+                  </div>
                   </div>
 
 
@@ -108,24 +114,24 @@
 
 
                   <div class="form-group">
-                    <label for="username">Специфика работы*</label>
-                    <select class="custom-select d-block w-100" id="country" required="">
-                        <option value="">Выберите...</option>
-                        <option>Исполнитель</option>
+                    <label for="id_job">Профессия*</label>
+                    <select class="custom-select d-block w-100" name="job" id="job" required="id_job">
+                        <option value selected>---------</option>
+                        <option value="Исполнитель">Исполнитель</option>
                     </select>
                       <div class="invalid-feedback">
                             Please select a valid country.
                       </div>
                       </div>
 
-                </div>
+
                 <div class="form-group">
-                    <label for="username">Город</label>
+                    <label for="city">Город</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" name="city" placeholder="Москва" type="email" required>
+                    <input class="form-control" name="city" placeholder="Москва" type="text" required>
                   </div>
 
                 </div>
@@ -135,14 +141,14 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" name="username" placeholder="Придумайте логин" type="username" required>
+                    <input class="form-control" name="username" placeholder="Придумайте логин" type="text" required>
                       <div class="invalid-feedback">
                             Please select a valid country.
                       </div>
                   </div>
 
                 <div class="form-group">
-                    <label for="username">Почта*</label>
+                    <label for="email">Почта*</label>
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i>@</span>
@@ -152,32 +158,32 @@
                             Please select a valid country.
                       </div>
                   </div>
-                  
                 </div>
+
                 <div class="form-group">
-                    <label for="username">Пароль*</label>
+                    <label for="password">Пароль*</label>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control" name="password" placeholder="Придумайте пароль" type="password" required>
                   </div>
-                  
+
                 </div>
-                <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
-                <div class="row my-4">
-                  <div class="col-12">
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
-                      <label class="custom-control-label" for="customCheckRegister">
-                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                
+{#                <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>#}
+{#                <div class="row my-4">#}
+{#                  <div class="col-12">#}
+{#                    <div class="custom-control custom-control-alternative custom-checkbox">#}
+{#                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>#}
+{#                      <label class="custom-control-label" for="customCheckRegister">#}
+{#                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>#}
+{#                      </label>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+
                 <div class="text-center">
-                  <button class="btn btn-primary mt-4">Create account</button>
+                  <button class="btn btn-primary mt-4" type="submit">Создать профиль</button>
                 </div>
               </form>
             </div>
