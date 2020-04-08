@@ -6,7 +6,7 @@ class Profile(models.Model):
 	JOB_CHOICES = (
 		('Исполнитель', 'Исполнитель'),
 		)
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
 	# first_name = models.CharField(max_length=20, verbose_name='Имя')
 	# last_name = models.CharField(max_length=20, verbose_name='Фамиля')
 	number = models.CharField(max_length=20, verbose_name='Номер телефона')
@@ -19,8 +19,7 @@ class Profile(models.Model):
 	# passwd = models.CharField(verbose_name='Пароль', max_length=100)
 
 	def __str__(self):
-		return self.number
-
+		return self.user
 
 	class Meta:
 		verbose_name = 'Пользователь'
@@ -38,7 +37,6 @@ class Project(models.Model):
 
 	def __str__(self):
 		return self.name
-
 
 	class Meta:
 		verbose_name = 'Проект'
@@ -110,29 +108,9 @@ class Statement(models.Model):
 	def __str__(self):
 		return self.product_name
 
-
 	class Meta:
 		verbose_name = 'Ведомость'
 		verbose_name_plural = 'Ведомости'
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	# family = models.CharField()
 	# images = models.ImageField()
