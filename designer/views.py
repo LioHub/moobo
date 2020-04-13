@@ -57,21 +57,46 @@ def authapp_sign_up(request):
 
 def new_project(request):
     print(request.POST)
-    project_form = ProjectForm()
 
     if request.method == 'POST':
-        project_form = ProjectForm(request.POST)
+        user = {'user': str(request.user.pk)}
+        response = request.POST.copy()
+        response.update(user)
 
-        print('project_form.is_valid()', project_form.is_valid())
+        print('res', response)
+        project_form = ProjectForm(response)
+
+        print('project_form.is_valid', project_form.is_valid())
 
         if project_form.is_valid():
-            print('im here')
             # new_project = project_form.save(commit=False)
             # creator = request.user
             # new_project.user = creator
-            # project_form.save()
-            return redirect(authapp_home)
+            project_form.save()
+            statement_form = StatementForm()
+            return render(request, 'designer/statement.html', {
+                'statement_form': statement_form,
+            })
+        else:
+            print(project_form.errors)
 
+    project_form = ProjectForm()
     return render(request, 'designer/newproject.html', {
         'project_form': project_form,
+    })
+
+
+def statement(request):
+
+    if request.method == 'POST':
+        print(request.POST)
+
+        statement_form = StatementForm(request.POST)
+        print('statement_form.is_valid()', statement_form.is_valid())
+        if statement_form.is_valid():
+            print('here')
+
+    statement_form = StatementForm()
+    return render(request, 'designer/statement.html', {
+        'statement_form': statement_form,
     })

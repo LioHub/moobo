@@ -21,9 +21,17 @@ class ProfileForm(forms.ModelForm):
 
 
 class ProjectForm(forms.ModelForm):
+    # user = forms.IntegerField(required=True, initial='')
+    #
+    # def __init__(self, *args, **kwargs):
+    #     self.request = kwargs.pop("request")
+    #     super(ProjectForm, self).__init__(*args, **kwargs)
+    #     self.fields['user'].label = "Пользователь:"
+    #     self.fields['user'].initial = self.request.user
+
     class Meta:
         model = Project
-        fields = ('name', 'location', 'name_of_customer', 'email_of_customer',
+        fields = ('user', 'name', 'location', 'name_of_customer', 'email_of_customer',
                   'number_of_customer', 'price_of_project')
 
 
