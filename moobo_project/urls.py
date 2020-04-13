@@ -30,6 +30,7 @@ urlpatterns = [
     path('designer/', views.authapp_home, name='authapp-home'),
     path('designer/sign_up', views.authapp_sign_up, name='sign-up'),
     path('designer/newproject', views.new_project, name='new-project'),
+    path('designer/statement', views.statement, name='project-statement'),
 
 
     # path('designer/', views.designer_home, name='designer-gome'),
